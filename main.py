@@ -190,18 +190,18 @@ def main():
         # train for one epoch
         train_loss, train_EPE = train(train_loader, model, optimizer, epoch, train_writer)
         train_writer.add_scalar('mean EPE', train_EPE, epoch)
-
+        is_best = False
         # evaluate on validation set
+        if epoch % 4 == 0:
+            with torch.no_grad():
+                EPE = validate(val_loader, model, epoch, output_writers)
+            test_writer.add_scalar('mean EPE', EPE, epoch)
 
-        with torch.no_grad():
-            EPE = validate(val_loader, model, epoch, output_writers)
-        test_writer.add_scalar('mean EPE', EPE, epoch)
+            if best_EPE < 0:
+                best_EPE = EPE
 
-        if best_EPE < 0:
-            best_EPE = EPE
-
-        is_best = EPE < best_EPE
-        best_EPE = min(EPE, best_EPE)
+            is_best = EPE < best_EPE
+            best_EPE = min(EPE, best_EPE)
         save_checkpoint({
             'epoch': epoch + 1,
             'arch': args.arch,

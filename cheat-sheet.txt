@@ -1,0 +1,13 @@
+python main.py /mnt/flownet2-pytorch/data/FlyingChairs_release/data/ -b8 -j8 -a flownets
+
+
+
+python main.py /mnt/flownet2-pytorch/data/FlyingChairs_release/data/ \ 
+--start-epoch 189 -b8 -j8 -a flownets --pretrained \ 
+flying_chairs/06-28-02\:09/flownets\,adam\,300epochs\,epochSize1000\,b8\,lr0.0001/checkpoint.pth.tar
+
+
+# INFERENCE on a folder:
+
+python run_folder_inference.py /mnt/flownet2-pytorch/MPI-Sintel/training/final/ambush_5 \ 
+flying_chairs/06-29-14\:27/flownets\,adam\,500epochs\,epochSize1000\,b8\,lr0.0001/model_best.pth.tar

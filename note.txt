@@ -1,0 +1,9 @@
+# 06-28-2019
+
+- Resume training at epoch 189 on FlyingChairs, updated validate/test at every 4 epoch
+- EPE  = 2.435 at epoch 189
+
+# 06-29-2019
+
+- Trained to 500 epochs on FlyingChairs.
+- EPE = 2.0 at epoch 500
